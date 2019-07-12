@@ -45,7 +45,7 @@ public class Creature {
     ac = a;
   }
 
-  public int getDamage() {
+  public int getDamage(int d) {
     return this.damage;
   }
 
@@ -53,4 +53,19 @@ public class Creature {
     damage = d;
   }
 
+  public boolean isAlive() {
+    if (hp > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public void attackCreature(Creature target) {
+    int result = Utils.roll(20, attack);
+    if (result > target.ac) {
+      // Hit
+      target.setHp(target.getHp() - damage);
+    }
+  }
 }
